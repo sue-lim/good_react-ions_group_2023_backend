@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
-    'workshops.apps.WorkshopsConfig',
+    # 'events.apps.WorkshopsConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'django.contrib.admin',
@@ -49,7 +49,9 @@ REST_FRAMEWORK = {
     ]
 }
 
-AUTH_USER_MODEL = 'users.CustomUser'
+# AUTH_USER_MODEL = [
+# 'users.CustomUser',
+# ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
