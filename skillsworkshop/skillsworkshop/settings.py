@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
+    # 'users.apps.UsersConfig',
 ]
 
 REST_FRAMEWORK = {
@@ -50,9 +50,9 @@ REST_FRAMEWORK = {
     ]
 }
 
-AUTH_USER_MODEL = [
-'users.CustomUser',
-]
+# AUTH_USER_MODEL = [
+# 'users.CustomUser',
+# ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
