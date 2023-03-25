@@ -3,8 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
 from rest_framework import status, generics, permissions
-from .permissions import IsOrganizerOrReadOnly, IsSupporterOrReadOnly **copied from previous project
-# from django_filters.rest_framework import DjangoFilterBackend **copied from previous project
+from .permissions import IsOrganizerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend 
 
 from .models import Event
 from .serializers import EventSerializer

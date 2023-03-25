@@ -31,8 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
-    # 'events.apps.WorkshopsConfig',
+    'events.apps.EventsConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'django.contrib.admin',
@@ -41,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'users.apps.UsersConfig',
+    'django_filters',
+    'users.apps.UsersConfig',
 ]
 
 REST_FRAMEWORK = {
