@@ -39,10 +39,10 @@ class EventDetail(APIView):
         return Response(serializer.data)
 
     def put(self, request, pk):
-        project = self.get_object(pk)
+        event = self.get_object(pk)
         data = request.data
         serializer = EventSerializer(
-            instance=project,
+            instance = event,
             data=data,
             partial=True
         )
