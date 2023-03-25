@@ -10,7 +10,7 @@ from django.contrib.auth.password_validation import validate_password
 class CustomUserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length=100)
     bio = serializers.CharField()
-    phone_number = serializers.IntegerField()
+    phone_number = serializers.CharField()
     first_name = serializers.CharField(max_length=30)
     last_name = serializers.CharField(max_length=30)
     email = serializers.EmailField(required=True,
@@ -19,7 +19,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     profile_picture = serializers.URLField()
     is_mentor = serializers.BooleanField()
     is_mentee = serializers.BooleanField(default=True)
-    is_private = serializers.BooleanField()
+    is_private = serializers.BooleanField(default=False)
     password = serializers.CharField(
         write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
@@ -27,7 +27,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['username', 'bio', 'phone_number', 'first_name', 'last_name',
-                  'email', 'location', 'profile_picture', 'password', 'password02']
+                  'email', 'location', 'profile_picture', 'password', 'password2', 'is_mentor', 'is_mentee', 'is_private', 'id']
+        read_only_fields = ['id', 'is_private', 'is_mentee']
         extra_kwargs = {'first_name': {'required': True},
                         'last_name': {'required': True}}
 
