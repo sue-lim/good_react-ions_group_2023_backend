@@ -1,8 +1,7 @@
 from rest_framework import serializers
 
 from .models import Event
-# UHWC from users.serializers import ("whatever sue has called it")
-
+from users.serializers import CustomUserSerializer
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,7 +10,7 @@ class EventSerializer(serializers.ModelSerializer):
                   'max_participants', 'image', 'is_open', 'organizer', 'attendees']
         read_only_fields = ['id', 'attendees']
 
-    attendees = serializers.SerializerMethodField()
+    attendees = CustomUserSerializer(many=True, read_only=True)
 
     def get_attendees(self, object):  # format of attendees as below. to inform front end team
         name = {

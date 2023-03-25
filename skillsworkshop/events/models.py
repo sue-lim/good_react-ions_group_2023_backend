@@ -32,8 +32,9 @@ class Event(models.Model):
     )
     attendees = models.ManyToManyField(
         User,
-        on_delete=models.CASCADE,
-        related_name='attendee',
+        # on_delete=models.CASCADE,
+        related_name='attendees',
+        # blank=True,
     )
 
 
