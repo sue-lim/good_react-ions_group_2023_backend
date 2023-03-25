@@ -108,6 +108,9 @@ class CustomUserSessionView(generics.RetrieveUpdateAPIView):
 
 class MentorListView(APIView):
     def get(self, request):
-        mentors = CustomUser.objects.filer(is_mentor=True)
-        serializer = CustomUserSerializer(mentors, many=True)
-        return mentors(serializer.data)
+        queryset = CustomUser.objects.filter(is_mentor=True)
+        serializer = CustomUserSerializer
+        return Response(serializer.data)
+
+ # mentors = self.filter_queryset(self.getqueryset(is_mentor=True))
+ #  # serializer = self.get_serializer(CustomUserSerializer, many=True)
