@@ -4,24 +4,36 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+class Topic(models.Model):
+    name = models.CharField (max_length=200)
+    class Meta:
+        ordering=('name')
+    def __str__(self):
+        return self.name
+    
+class Event(models.Model):
+    topic = models.ForeignKey (
+        Topic, 
+        on_delete=models.CASCADE,
+        related_name='events',
 
-class Event(models.model):
+    )
     event_title = models.CharField(max_length=200)
-    description = models.Textfield()
+    description = models.TextField()
     datetime = models.DateTimeField()
     location = models.CharField(max_length=200)
     max_participants = models.CharField(max_length=200)  # should be integer
     image = models.URLField()
     is_open = models.BooleanField()
-    organiser = models.ForeignKey(
+    organizer = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='organiser'
+        related_name='organizer'
     )
-    attendees = models.OneToManyField(
+    attendees = models.ManyToManyField(
         User,
-        related_name='attendee',
         on_delete=models.CASCADE,
+        related_name='attendee',
     )
 
 
