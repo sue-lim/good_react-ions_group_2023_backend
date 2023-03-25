@@ -101,3 +101,13 @@ class CustomUserSessionView(generics.RetrieveUpdateAPIView):
 #         user = CustomUser.objects.get(id=request.user.id)
 #         serializer = CustomUserSerializer(user)
 #         return Response(serializer.data)
+
+
+'''View when user indicates is_mentor=True for Mentor List'''
+
+
+class MentorListView(APIView):
+    def get(self, request):
+        mentors = CustomUser.objects.filer(is_mentor=True)
+        serializer = CustomUserSerializer(mentors, many=True)
+        return mentors(serializer.data)
