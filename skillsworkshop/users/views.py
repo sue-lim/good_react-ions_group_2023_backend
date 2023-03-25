@@ -106,11 +106,10 @@ class CustomUserSessionView(generics.RetrieveUpdateAPIView):
 '''View when user indicates is_mentor=True for Mentor List'''
 
 
-class MentorListView(APIView):
-    def get(self, request):
-        queryset = CustomUser.objects.filter(is_mentor=True)
-        serializer = CustomUserSerializer
-        return Response(serializer.data)
+class MentorListView(generics.ListAPIView):
+    queryset = CustomUser.objects.exclude(is_mentee=True)
+    serializer_class = CustomUserSerializer
 
- # mentors = self.filter_queryset(self.getqueryset(is_mentor=True))
- #  # serializer = self.get_serializer(CustomUserSerializer, many=True)
+class MenteeListView(generics.ListAPIView):
+    queryset = CustomUser.objects.exclude(is_mentor=True)
+    serializer_class = CustomUserSerializer
