@@ -5,9 +5,9 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Topic(models.Model):
+    
     name = models.CharField (max_length=200)
-    class Meta:
-        ordering=('name')
+        
     def __str__(self):
         return self.name
     

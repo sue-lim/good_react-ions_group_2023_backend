@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 User = AbstractUser
 # Create your models here.
 class CustomUser(AbstractUser):
-    username = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, unique=True)
     bio = models.TextField()
     phone_number = models.IntegerField()
     first_name = models.CharField(max_length=30, blank=True)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'users.apps.UsersConfig',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -50,9 +51,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-# AUTH_USER_MODEL = [
-# 'users.CustomUser',
-# ]
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
