@@ -107,9 +107,16 @@ class CustomUserSessionView(generics.RetrieveUpdateAPIView):
 
 
 class MentorListView(generics.ListAPIView):
-    queryset = CustomUser.objects.exclude(is_mentee=True)
     serializer_class = CustomUserSerializer
 
+    def get_queryset(self):
+        queryset = CustomUser.objects.filter(is_mentor=True, is_private=False)
+        return queryset
+
+
 class MenteeListView(generics.ListAPIView):
-    queryset = CustomUser.objects.exclude(is_mentor=True)
     serializer_class = CustomUserSerializer
+
+    def get_queryset(self):
+        queryset = CustomUser.objects.filter(is_mentee=True, is_private=False)
+        return queryset
