@@ -12,6 +12,10 @@ urlpatterns = [
          name='customuser-detail-update'),
     path('session/', views.CustomUserSessionView.as_view(),
          name='customuser-session-view'),
+    path('mentor-list/', views.MentorListView.as_view(),
+         name='mentor-list'),
+        path('mentee-list/', views.MenteeListView.as_view(),
+         name='mentee-list'),
     # path('register', views.CustomUserRegisterAPIView.as_view(),
     #      name='customuser-register')
 

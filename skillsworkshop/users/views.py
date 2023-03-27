@@ -27,17 +27,17 @@ class CustomUserList(generics.ListCreateAPIView):
     def get(self, request):
         users = CustomUser.objects.all()
         serializer = CustomUserSerializer(users, many=True)
-        self.check_object_permissions(self.request,users)
+        self.check_object_permissions(self.request, users)
         return Response(serializer.data)
-    
+
     def put(self, request, pk):
         user = self.get_object(pk)
         data = request.data
         serializer = CustomUserDetailSerializer(
-            instance= user,
+            instance=user,
             data=data,
             partial=True
-            )
+        )
         if serializer.is_valid():
             serializer.save()
 
@@ -62,7 +62,7 @@ class CustomUserList(generics.ListCreateAPIView):
 
 
 class CustomUserDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated, IsOwnProfile]
+    permission_classes = [permissions.IsAuthenticated, IsOwnProfileOrReadOnly]
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserDetailSerializer
 
@@ -101,3 +101,22 @@ class CustomUserSessionView(generics.RetrieveUpdateAPIView):
 #         user = CustomUser.objects.get(id=request.user.id)
 #         serializer = CustomUserSerializer(user)
 #         return Response(serializer.data)
+
+
+'''View when user indicates is_mentor=True for Mentor List'''
+
+
+class MentorListView(generics.ListAPIView):
+    serializer_class = CustomUserSerializer
+
+    def get_queryset(self):
+        queryset = CustomUser.objects.filter(is_mentor=True, is_private=False)
+        return queryset
+
+
+class MenteeListView(generics.ListAPIView):
+    serializer_class = CustomUserSerializer
+
+    def get_queryset(self):
+        queryset = CustomUser.objects.filter(is_mentee=True, is_private=False)
+        return queryset
