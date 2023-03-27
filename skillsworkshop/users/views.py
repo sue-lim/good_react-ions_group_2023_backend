@@ -10,7 +10,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status, permissions, generics
 from .serializers import CustomUserSerializer, CustomUserDetailSerializer
-from .permissions import IsOwnProfileOrReadOnly
+
 
 
 '''VIEW ALL USERS & CREATE USER'''
@@ -18,7 +18,7 @@ from .permissions import IsOwnProfileOrReadOnly
 
 class CustomUserList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnProfileOrReadOnly]
+                          ]
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
     filter_backends = [DjangoFilterBackend]
@@ -62,7 +62,7 @@ class CustomUserList(generics.ListCreateAPIView):
 
 
 class CustomUserDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated, IsOwnProfileOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserDetailSerializer
 
