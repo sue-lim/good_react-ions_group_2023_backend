@@ -36,6 +36,9 @@ class Event(models.Model):
         related_name='attendees',
         # blank=True,
     )
+    
+    def __str__(self):
+        return self.topic
 
 
 @property
