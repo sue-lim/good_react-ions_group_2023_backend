@@ -19,6 +19,7 @@ class CustomUser(AbstractUser):
         ('IT Support & Systems Administration','IT Support & Systems Administration'),
         ('Project Management','Project Management'),
         ('Software Development, Testing & Engineering','Software Development, Testing & Engineering'),
+        ('None','None'),
     ]
     INTEREST_CHOICES = [
         ('AI & Robotics','AI & Robotics'),
@@ -33,6 +34,7 @@ class CustomUser(AbstractUser):
         ('IT Support & Systems Administration','IT Support & Systems Administration'),
         ('Project Management','Project Management'),
         ('Software Development, Testing & Engineering','Software Development, Testing & Engineering'),
+        ('None','None'),
     ]
     username = models.CharField(max_length=100, unique=True)
     bio = models.TextField(blank=True)
@@ -45,8 +47,8 @@ class CustomUser(AbstractUser):
     is_mentor = models.BooleanField(default=False)
     is_mentee = models.BooleanField(default=True)
     is_private = models.BooleanField(default=False)
-    skills = MultiSelectField(choices = SKILLS_CHOICES)
-    interest = MultiSelectField(choices = INTEREST_CHOICES)
+    skills = MultiSelectField(choices = SKILLS_CHOICES, blank=True)
+    interest = MultiSelectField(choices = INTEREST_CHOICES, blank = True)
     
     pass
 
