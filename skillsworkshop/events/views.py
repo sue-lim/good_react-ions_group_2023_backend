@@ -17,14 +17,34 @@ class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
-    def create(self, serializer):
-        serializer.save(organiser=self.request.user)
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    
+    def post(self, request):
+        serializer = EventSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(organizer=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+# PUBLIC LIST OF EVENTS 
+class EventListPublic(generics.ListAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
+    
 
 
-class EventDetail(APIView):
+class EventDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOrganizerOrReadOnly
+                          ]
+    queryset =  Event.objects.all()
+    serializer_class = EventSerializer
+    
     def get_object(self, pk):
         try:
             event = Event.objects.get(pk=pk)
