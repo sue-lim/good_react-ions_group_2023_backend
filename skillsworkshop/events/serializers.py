@@ -7,8 +7,9 @@ from users.serializers import CustomUserSerializer
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'event_title', 'description', 'datetime', 'location',
-                  'max_participants', 'image', 'is_open', 'organizer', 'attendees']
+        fields = '__all__'
+        # ['id', 'event_title', 'description', 'datetime', 'location',
+        #           'max_participants', 'image', 'is_open', 'organizer', 'attendees']
         read_only_fields = ['id', 'attendees']
 
     attendees = CustomUserSerializer(many=True, read_only=True)
@@ -32,5 +33,7 @@ class EventSerializer(serializers.ModelSerializer):
         instance.datetime = validated_data.get('datetime', instance.datetime)
         instance.organizer = validated_data.get(
             'organizer', instance.organizer)
+        instance.sponsor = validated_data.get(
+            'sponsor', instance.sponsor)
         instance.save()
         return instance
