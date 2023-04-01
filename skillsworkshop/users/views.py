@@ -1,12 +1,9 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from django.http import Http404
 from .models import CustomUser
-from rest_framework.generics import GenericAPIView
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics, permissions
-from rest_framework.permissions import AllowAny
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status, permissions, generics
 from .serializers import CustomUserSerializer, CustomUserDetailSerializer
@@ -17,7 +14,7 @@ from .serializers import CustomUserSerializer, CustomUserDetailSerializer
 
 
 class CustomUserList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly
                           ]
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
@@ -63,6 +60,7 @@ class CustomUserList(generics.ListCreateAPIView):
 
 class CustomUserDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    # authentication_classes = [TokenAuthentication, SessionAuthentication]
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserDetailSerializer
 
