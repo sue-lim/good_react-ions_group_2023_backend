@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers, response
 
 from .models import Event
 from users.serializers import CustomUserSerializer
@@ -36,4 +36,4 @@ class EventSerializer(serializers.ModelSerializer):
         instance.sponsor = validated_data.get(
             'sponsor', instance.sponsor)
         instance.save()
-        return instance
+        return response(instance, status=200)
