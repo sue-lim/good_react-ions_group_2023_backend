@@ -1,5 +1,5 @@
 from rest_framework import serializers, response
-from .models import Event, Topic
+from .models import Event
 from users.serializers import CustomUserSerializer
 
 

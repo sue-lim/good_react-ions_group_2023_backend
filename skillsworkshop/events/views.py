@@ -11,9 +11,7 @@ from .serializers import EventSerializer
 
 
 class EventList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOrganizerOrReadOnly
-                          ]
+
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
@@ -40,7 +38,7 @@ class EventListPublic(generics.ListAPIView):
 
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOrganizerOrReadOnly
+                         
                           ]
     queryset =  Event.objects.all()
     serializer_class = EventSerializer
