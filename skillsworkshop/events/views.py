@@ -43,33 +43,33 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset =  Event.objects.all()
     serializer_class = EventSerializer
     
-    def get_object(self, pk):
-        try:
-            event = Event.objects.get(pk=pk)
-            self.check_object_permissions(self.request, event)
-            return event
-        except event.DoesNotExist:
-            raise Http404
+    # def get_object(self, pk):
+    #     try:
+    #         event = Event.objects.get(pk=pk)
+    #         self.check_object_permissions(self.request, event)
+    #         return event
+    #     except event.DoesNotExist:
+    #         raise Http404
 
-    def get(self, request, pk):  # this is will run
-        event = self.get_object(pk)
-        serializer = EventSerializer(event)
-        return Response(serializer.data)
+    # def get(self, request, pk):  # this is will run
+    #     event = self.get_object(pk)
+    #     serializer = EventSerializer(event)
+    #     return Response(serializer.data)
 
-    def put(self, request, pk):
-        event = self.get_object(pk)
-        data = request.data
-        serializer = EventSerializer(
-            instance = event,
-            data=data,
-            partial=True
-        )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors)
+    # def put(self, request, pk):
+    #     event = self.get_object(pk)
+    #     data = request.data
+    #     serializer = EventSerializer(
+    #         instance = event,
+    #         data=data,
+    #         partial=True
+    #     )
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     return Response(serializer.errors)
 
-    def delete(self, request, pk):
-        snippet = self.get_object(pk)
-        snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    # def delete(self, request, pk):
+    #     snippet = self.get_object(pk)
+    #     snippet.delete()
+    #     return Response(status=status.HTTP_204_NO_CONTENT)
