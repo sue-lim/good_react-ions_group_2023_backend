@@ -23,9 +23,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = '__all__'
-        # ['username', 'bio', 'phone_number', 'first_name', 'last_name',
-        #           'email', 'location', 'profile_picture', 'password', 'password2', 'is_mentor', 'is_mentee', 'is_private', 'id']
+        fields = ['username', 'bio', 'phone_number', 'first_name', 'last_name',
+                  'email', 'location', 'profile_picture', 'password', 'password2', 'is_mentor', 'is_mentee', 'is_private', 'id', 'skills', 'interest']
         read_only_fields = ['id', 'is_private', 'is_mentee']
         extra_kwargs = {'first_name': {'required': True},
                         'last_name': {'required': True}}
@@ -51,10 +50,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
 class CustomUserDetailSerializer(CustomUserSerializer):
     class Meta:
         model = CustomUser
-        fields = '__all__'
-        
-        # ['username', 'first_name', 'last_name',
-        #           'email', 'password', 'password2']
+        fields = ['username', 'first_name', 'last_name',
+                  'email', 'password', 'password2']
         extra_kwargs = {'first_name': {'required': True},
                         'last_name': {'required': True}}
 
