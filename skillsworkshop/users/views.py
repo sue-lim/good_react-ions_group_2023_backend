@@ -63,7 +63,7 @@ class CustomUserList(generics.ListCreateAPIView):
 '''VIEW USER & UPDATE DETAILS | RetrieveUpdateDestroyAPIView for single instances '''
 
 class CustomUserDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserDetailSerializer
 
