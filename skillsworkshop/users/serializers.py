@@ -7,7 +7,7 @@ from django.contrib.auth.password_validation import validate_password
 class CustomUserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length=100)
     bio = serializers.CharField()
-    phone_number = serializers.CharField()
+    phone_number = serializers.CharField(max_length=15)
     first_name = serializers.CharField(max_length=30)
     last_name = serializers.CharField(max_length=30)
     email = serializers.EmailField(required=True,
@@ -34,8 +34,14 @@ class CustomUserSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             email=validated_data['email'],
             first_name=validated_data['first_name'],
-            last_name=validated_data['last_name']
-        )
+            last_name=validated_data['last_name'], 
+            bio=validated_data['bio'],
+            location=validated_data['location'],
+            profile_picture=validated_data['profile_picture'],
+            skills=validated_data['skills'],
+            interest=validated_data['interest'],
+            phone_number=validated_data['phone_number']
+            )
         user.set_password(validated_data['password'])
         user.save()
         return user
