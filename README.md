@@ -1,7 +1,8 @@
-# good_react-ions_group_2023_backend
+# good_react-ions_group_project_2023_backend
 
 She Codes | Skill Workshop | Group Project | Backend 
 Link - https://goodreactions.fly.dev/admin/login/?next=/admin/
+Deployment - Fly.io
 
 Language - Django Rest Framework 
 
