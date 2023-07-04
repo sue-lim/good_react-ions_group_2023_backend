@@ -1,5 +1,7 @@
 # good_react-ions_group_2023_backend
-She Codes Backend Code for She Codes Project 
+
+She Codes | Skill Workshop | Group Project | Backend 
+Link - https://goodreactions.fly.dev/admin/login/?next=/admin/
 
 Language - Django Rest Framework 
 
